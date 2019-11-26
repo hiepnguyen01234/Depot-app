@@ -1,0 +1,39 @@
+en: 
+  layouts:
+    application:
+      home: "Home"
+      title: "Books Store"
+      faq: "FAQ"
+      news: "News"
+      contact: "Contact"
+
+  store:
+    index:
+      title: "Products List"
+      add: "Add to Cart"
+  carts:
+    cart:
+      title: "Your cart"
+      empty_cart: "Empty cart"
+      checkout: "Checkout"
+
+  number:
+    currency:
+      format:
+        unit: "$"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format: "%u%n"
+
+  orders:
+    new:
+      legend: "Enter your information"
+    form:
+      name: "Name"
+      address: "Address"
+      pay_type: "Payment Type"
+      pay_type_combo: "Select a payment method"
+      submit: "Checkout"
+
+  thanks: "Thank you for your order"

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Books Store</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+</head>
+<body id="store">
+    <div id="banner">
+        <%= form_tag '/', :class => 'locale', :method => :get do %>
+            <%= select_tag 'set_locale',
+                options_for_select(LANGUAGES, I18n.locale.to_s),
+                :onchange => 'this.form.submit()' %>         
+        <% end %>
+        <%= image_tag("logo.png") %>
+        <%= button_to 'Login', '/login', :method => :post %>
+        <%= button_to 'Signup', new_user_path, :method => :get %>
+        <%= @page_title || t('.title') %>
+    </div>
+    <div id="columns">
+        <div id="side">
+            <div id="cart">
+                <%= hide_cart_if(current_cart.line_items.empty?, :id => "cart") do %>
+                <%= render current_cart %> 
+                <% end %>
+            </div>
+
+            <a href="/"><%= t('.home') %></a><br />
+            <a href="/line_items/"><%= t('.faq') %></a><br />
+            <a href="/carts/"><%= t('.news') %></a><br />
+            <a href="/orders/"><%= t('.contact') %></a><br />
+            <%= link_to 'Products list', products_path %><br />
+
+            <% if session[:user_id] %>
+                <br/>
+                <%= link_to 'Orders', '/orders' %><br />
+                <%= link_to 'Products', '/products' %><br />
+                <%= link_to 'Users', '/users' %><br />
+                <%= button_to 'Logout', '/logout', :method => :delete %>
+                <br/>
+            <% else %>
+                <br/>
+                <%= link_to 'Log In', login_path %><br />
+            <% end %>
+        </div>
+        <div id="main">
+            <%= yield %>
+        </div>
+    </div> 
+</body>
+</html>
